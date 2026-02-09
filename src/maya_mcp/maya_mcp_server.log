@@ -1,0 +1,39 @@
+2026-02-09 11:54:21,741 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 11:54:21,741 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 11:54:21,741 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 13:15:10,052 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 13:15:10,052 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 13:15:10,052 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 13:16:25,273 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 13:16:25,273 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 13:16:25,273 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 13:16:40,753 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 13:16:40,753 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 13:16:40,753 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 13:17:12,447 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 13:17:12,447 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 13:17:12,447 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 13:23:11,628 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 13:23:11,628 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 13:23:11,628 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 13:30:19,548 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 13:30:19,548 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 13:30:19,549 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 15:25:14,818 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 15:25:14,818 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 15:25:14,818 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 15:28:07,030 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 15:28:07,030 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 15:28:07,030 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 15:28:17,339 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 15:28:17,339 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 15:28:17,339 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 15:45:19,805 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 15:45:19,805 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 15:45:19,805 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 15:51:54,703 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 15:51:54,703 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 15:51:54,703 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
+2026-02-09 16:39:45,653 - mcp.server.lowlevel.server - DEBUG - [server.py:162] - Initializing server 'MayaMCP'
+2026-02-09 16:39:45,653 - mcp.server.lowlevel.server - DEBUG - [server.py:439] - Registering handler for ListToolsRequest
+2026-02-09 16:39:45,653 - mcp.server.lowlevel.server - DEBUG - [server.py:519] - Registering handler for CallToolRequest
