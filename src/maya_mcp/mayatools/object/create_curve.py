@@ -38,24 +38,47 @@ def create_curve(
     import random
     import math
     
-    def _validate_vector3d(vec:List[float]):
-        return isinstance(vec, list) and len(vec) == 3 and all([isinstance(v, float) for v in vec])
+    def _validate_and_normalize_vector3d(vec:List[float]):
+        """Validate and normalize a 3D vector, accepting both int and float values"""
+        if not isinstance(vec, list) or len(vec) != 3:
+            return None
+        try:
+            normalized = [float(v) for v in vec]
+            return normalized
+        except (ValueError, TypeError):
+            return None
     
     # Validate inputs
     if curve_type.lower() == "custom" and not points:
         raise ValueError("Points must be provided for custom curve type")
     
-    if points and not all([_validate_vector3d(p) for p in points]):
-        raise ValueError("Invalid point format. Each point must be a list of 3 float values.")
+    # Validate and normalize points
+    if points:
+        normalized_points = []
+        for p in points:
+            normalized = _validate_and_normalize_vector3d(p)
+            if normalized is None:
+                raise ValueError("Invalid point format. Each point must be a list of 3 numeric values (int or float).")
+            normalized_points.append(normalized)
+        points = normalized_points
     
-    if not _validate_vector3d(translate):
-        raise ValueError("Invalid translate format. Must be a list of 3 float values.")
+    # Validate and normalize translate
+    normalized_translate = _validate_and_normalize_vector3d(translate)
+    if normalized_translate is None:
+        raise ValueError("Invalid translate format. Must be a list of 3 numeric values (int or float).")
+    translate = normalized_translate
     
-    if not _validate_vector3d(rotate):
-        raise ValueError("Invalid rotate format. Must be a list of 3 float values.")
+    # Validate and normalize rotate
+    normalized_rotate = _validate_and_normalize_vector3d(rotate)
+    if normalized_rotate is None:
+        raise ValueError("Invalid rotate format. Must be a list of 3 numeric values (int or float).")
+    rotate = normalized_rotate
     
-    if not _validate_vector3d(scale):
-        raise ValueError("Invalid scale format. Must be a list of 3 float values.")
+    # Validate and normalize scale
+    normalized_scale = _validate_and_normalize_vector3d(scale)
+    if normalized_scale is None:
+        raise ValueError("Invalid scale format. Must be a list of 3 numeric values (int or float).")
+    scale = normalized_scale
     
     # Set default parameters dict if none provided
     if parameters is None:

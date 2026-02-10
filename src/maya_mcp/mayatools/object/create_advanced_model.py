@@ -32,16 +32,31 @@ def create_advanced_model(
     import random
     import math
     
-    def _validate_vector3d(vec:List[float]):
-        return isinstance(vec, list) and len(vec) == 3 and all([isinstance(v, float) for v in vec])
+    def _validate_and_normalize_vector3d(vec:List[float]):
+        """Validate and normalize a 3D vector, accepting both int and float values"""
+        if not isinstance(vec, list) or len(vec) != 3:
+            return None
+        try:
+            normalized = [float(v) for v in vec]
+            return normalized
+        except (ValueError, TypeError):
+            return None
     
-    # Input validation
-    if not _validate_vector3d(translate):
-        raise ValueError("Invalid translate format. Must be a list of 3 float values.")
-    if not _validate_vector3d(rotate):
-        raise ValueError("Invalid rotate format. Must be a list of 3 float values.")
-    if not _validate_vector3d(color):
-        raise ValueError("Invalid color format. Must be a list of 3 float values between 0-1.")
+    # Input validation and normalization
+    normalized_translate = _validate_and_normalize_vector3d(translate)
+    if normalized_translate is None:
+        raise ValueError("Invalid translate format. Must be a list of 3 numeric values (int or float).")
+    translate = normalized_translate
+    
+    normalized_rotate = _validate_and_normalize_vector3d(rotate)
+    if normalized_rotate is None:
+        raise ValueError("Invalid rotate format. Must be a list of 3 numeric values (int or float).")
+    rotate = normalized_rotate
+    
+    normalized_color = _validate_and_normalize_vector3d(color)
+    if normalized_color is None:
+        raise ValueError("Invalid color format. Must be a list of 3 numeric values (int or float) between 0-1.")
+    color = normalized_color
         
     # Set default parameters dict if none provided
     if parameters is None:

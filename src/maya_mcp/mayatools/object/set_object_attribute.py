@@ -10,8 +10,16 @@ def set_object_attribute(object_name:str, attribute_name:str, attribute_value:An
     """ Set an object's attribute with a specific value. """
     import maya.cmds as cmds
 
-    def _validate_vector3d(vec:List[float]):
-        return isinstance(vec, list) and len(vec) == 3 and all([isinstance(v, float) for v in vec])
+    def _validate_and_normalize_vector3d(vec:List[float]):
+        """Validate and normalize a 3D vector, accepting both int and float values"""
+        if not isinstance(vec, list) or len(vec) != 3:
+            return None
+        # Check if all values are numeric (int or float)
+        try:
+            normalized = [float(v) for v in vec]
+            return normalized
+        except (ValueError, TypeError):
+            return None
 
     if not cmds.objExists(object_name):
         raise ValueError(f"Error: {object_name} doesn't exist in the scene")
@@ -31,8 +39,10 @@ def set_object_attribute(object_name:str, attribute_name:str, attribute_value:An
     attr_type = cmds.getAttr(f'{object_name}.{attribute_name}', type=True)
      
     if attr_type == 'double3':
-        if not _validate_vector3d(attribute_value):
-            raise ValueError(f"{attribute_name} is a 3d vector and needs to be list of 3 floats.")
+        normalized_value = _validate_and_normalize_vector3d(attribute_value)
+        if normalized_value is None:
+            raise ValueError(f"{attribute_name} is a 3d vector and needs to be list of 3 numeric values (int or float).")
+        attribute_value = normalized_value
 
     try:
         if attr_type == 'double3':

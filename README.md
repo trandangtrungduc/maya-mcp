@@ -282,6 +282,25 @@ Take a screenshot of the current viewport to see what the scene looks like
 List all cameras in the scene, then list all lights
 ```
 
+### Code Execution
+
+**Execute Python code to understand context:**
+```
+Execute Python code to list all objects in the scene and print their types and positions
+```
+
+**Execute code for complex operations:**
+```
+Execute Python code to create a procedural grid of cubes with random heights, then apply different materials to each based on height
+```
+
+**Execute code to inspect scene state:**
+```
+Execute Python code to check if there are any objects with visibility turned off, and print their names
+```
+
+**Note**: The `execute_code` tool allows running arbitrary Python code in Maya, which is powerful but potentially dangerous. Always save your work before using it. The AI can use this tool automatically to understand context and perform operations that aren't covered by other tools.
+
 ### Complex Workflows
 
 **Create a complete scene:**
@@ -318,6 +337,7 @@ The Maya MCP server provides the following tools:
 - `scene_save` - Save the current scene
 - `get_scene_info` - Get detailed scene information
 - `get_viewport_screenshot` - Capture viewport screenshot
+- `execute_code` - Execute arbitrary Python code in Maya (powerful but use with caution)
 
 ### Object Operations
 - `duplicate_object` - Duplicate objects
@@ -377,6 +397,10 @@ The server logs all operations to `maya_mcp_server.log` in the package directory
 
 - **Large scenes**: Operations on scenes with many objects may take longer
 - **Complex operations**: Boolean operations and mesh smoothing on high-poly objects can be slow
+
+### Security Considerations
+
+- **execute_code tool**: The `execute_code` tool allows running arbitrary Python code in Maya, which can be powerful but potentially dangerous. Always save your work before using it. The AI may use this tool automatically to understand context and perform complex operations.
 
 ## Contributing
 

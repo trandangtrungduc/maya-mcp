@@ -33,12 +33,21 @@ def create_material(
     import maya.cmds as cmds
     import random
     
-    def _validate_vector3d(vec:List[float]):
-        return isinstance(vec, list) and len(vec) == 3 and all([isinstance(v, float) for v in vec])
+    def _validate_and_normalize_vector3d(vec:List[float]):
+        """Validate and normalize a 3D vector, accepting both int and float values"""
+        if not isinstance(vec, list) or len(vec) != 3:
+            return None
+        try:
+            normalized = [float(v) for v in vec]
+            return normalized
+        except (ValueError, TypeError):
+            return None
     
-    # Validate inputs
-    if not _validate_vector3d(color):
-        raise ValueError("Invalid color format. Must be a list of 3 float values between 0-1.")
+    # Validate and normalize inputs
+    normalized_color = _validate_and_normalize_vector3d(color)
+    if normalized_color is None:
+        raise ValueError("Invalid color format. Must be a list of 3 numeric values (int or float) between 0-1.")
+    color = normalized_color
     
     # If assign_to is specified, validate it exists
     if assign_to and not cmds.objExists(assign_to):

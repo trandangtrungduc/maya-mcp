@@ -325,6 +325,76 @@ async def handle_list_tools() -> list[Tool]:
     return _operation_manager.get_tools()
 
 
+def load_execute_code_script(code: str) -> str:
+    """Load execute_code tool with direct code execution (not wrapped in function)"""
+    # Use repr() to safely escape the code string for embedding in Python
+    code_repr = repr(code)
+    
+    return f"""
+import io
+import contextlib
+import traceback
+import json
+import maya.cmds as cmds
+
+# Capture stdout during execution
+_mcp_execute_buffer = io.StringIO()
+
+try:
+    # Create a namespace with Maya modules available
+    _mcp_execute_namespace = {{
+        'maya': __import__('maya'),
+        'cmds': cmds,
+        'mel': __import__('maya.mel').mel,
+        'OpenMaya': __import__('maya.OpenMaya'),
+    }}
+    
+    # Try to import other common Maya modules
+    try:
+        _mcp_execute_namespace['api'] = __import__('maya.api.OpenMaya')
+    except:
+        pass
+    
+    try:
+        _mcp_execute_namespace['utils'] = __import__('maya.utils')
+    except:
+        pass
+    
+    # Get the code string and execute it
+    _mcp_code_to_execute = {code_repr}
+    
+    # Execute the code with stdout capture
+    with contextlib.redirect_stdout(_mcp_execute_buffer):
+        exec(_mcp_code_to_execute, _mcp_execute_namespace)
+    
+    _mcp_execute_output = _mcp_execute_buffer.getvalue()
+    
+    _mcp_maya_results = {{
+        "success": True,
+        "result": _mcp_execute_output if _mcp_execute_output else "Code executed successfully (no output)",
+        "error": None
+    }}
+    
+except Exception as e:
+    # Capture error traceback
+    _mcp_error_buffer = io.StringIO()
+    traceback.print_exc(file=_mcp_error_buffer)
+    _mcp_error_traceback = _mcp_error_buffer.getvalue()
+    
+    # Also get any stdout that was captured before the error
+    _mcp_execute_output = _mcp_execute_buffer.getvalue()
+    
+    _mcp_maya_results = {{
+        "success": False,
+        "result": _mcp_execute_output if _mcp_execute_output else "",
+        "error": str(e),
+        "traceback": _mcp_error_traceback
+    }}
+
+_mcp_maya_results = json.dumps(_mcp_maya_results)
+"""
+
+
 @server.call_tool()
 async def handle_call_tool(
     name: str, 
@@ -342,7 +412,13 @@ async def handle_call_tool(
 
     try:
         maya_conn = MayaConnection()
-        python_script = load_maya_tool_source(name, path, arguments)
+        
+        # Special handling for execute_code - execute directly without function wrapper
+        if name == "execute_code" and arguments and "code" in arguments:
+            python_script = load_execute_code_script(arguments["code"])
+        else:
+            python_script = load_maya_tool_source(name, path, arguments)
+        
         results = maya_conn.run_python_script(python_script)
         converted_results = convert_to_content(results)
     except Exception as e:
