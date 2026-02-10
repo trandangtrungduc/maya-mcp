@@ -38,7 +38,7 @@ Maya MCP is a server that bridges Maya's command port with the Model Context Pro
     [Environment]::SetEnvironmentVariable("Path", "$userPath;$localBin", "User")
     ```
   - **Other platforms**: See [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
-- MCP-compatible AI assistant (e.g., Claude Desktop, Cursor)
+- MCP-compatible AI assistant (e.g., Claude Desktop, Cursor, VSCode)
 
 ### Setup
 
